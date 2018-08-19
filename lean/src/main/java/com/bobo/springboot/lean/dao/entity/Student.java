@@ -1,5 +1,7 @@
 package com.bobo.springboot.lean.dao.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.util.Date;
 
 public class Student {
@@ -13,12 +15,15 @@ public class Student {
 
     private Boolean gender;
 
+    @JSONField(format = "yyyy-MM-dd")
     private Date birthday;
 
     private Integer session;
 
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date addTime;
 
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     private String remark;
