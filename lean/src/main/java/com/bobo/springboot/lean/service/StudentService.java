@@ -27,7 +27,7 @@ public class StudentService extends BaseService{
             }
             studentMapper.insertSelective(student);
         }catch (Exception e) {
-            logger.error("StudentService insertStudent errror, the params:{}", JsonMapper.ObjectToJson(student),e);
+            logger.error("StudentService insertStudent errror, the params:{}", student.toString(),e);
             resultInfo.setCode(-1);
         }
         return resultInfo;
