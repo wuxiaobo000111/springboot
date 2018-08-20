@@ -26,6 +26,14 @@ spring:
       prefix: classpath:/templates/
       encoding: utf-8
       suffix: .html
+    #spring配置缓存使用
+    cache:
+      type: redis
+      cache-names: wuxiaobo
+    redis:
+      host: 192.168.31.54
+      port: 6379
+      password: wuxiaobo000111
 ## 该配置节点为独立的节点，有很多同学容易将这个配置放在spring的节点下，导致配置无法被识别
 mybatis:
   mapper-locations: classpath*:xml/*.xml  #注意：一定要对应mapper映射xml文件的所在路径

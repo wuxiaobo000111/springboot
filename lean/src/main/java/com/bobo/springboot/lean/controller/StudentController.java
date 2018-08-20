@@ -2,10 +2,14 @@ package com.bobo.springboot.lean.controller;
 
 import com.bobo.springboot.lean.commons.ResultInfo;
 import com.bobo.springboot.lean.dao.entity.Student;
+import com.bobo.springboot.lean.service.DataService;
 import com.bobo.springboot.lean.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by bobo on 2018/8/19/9:17.
@@ -15,6 +19,8 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private DataService dataService;
 
     @RequestMapping(value = "student/getStudentInfo",method = RequestMethod.GET)
     @ResponseBody
@@ -49,4 +55,27 @@ public class StudentController {
         ResultInfo resultInfo= studentService.insertStudent(student);
         return resultInfo;
     }
+
+    @RequestMapping("/put")
+    @ResponseBody
+    public String put(Long id, String value) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return  sdf.format(new Date()) + " : value is " + dataService.put(id, value) ;
+    }
+
+    @RequestMapping("/get")
+    @ResponseBody
+    public String query(Long id){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(new Date()) + " : value is " +dataService.query(id) ;
+    }
+
+    @RequestMapping("/remove")
+    @ResponseBody
+    public String remove(Long id) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        dataService.remove(id) ;
+        return sdf.format(new Date()) + " : success " ;
+    }
+
 }
